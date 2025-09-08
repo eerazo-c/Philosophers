@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/07/30 19:46:01 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:22:29 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include "ph_macros.h"
 # include "../library/printf/ft_printf.h"
 # include "../library/libft/libft.h"
 
