@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:32:12 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/08 13:52:00 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/08 20:36:47 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers.h"
@@ -15,6 +15,5 @@ int main(int ac, char **av)
 {
 	(void)av;
 	if (ac == 6 || ac == 5)
-		ft_printf("All is okay");
 	return (0);
 }

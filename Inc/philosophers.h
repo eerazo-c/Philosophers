@@ -6,11 +6,24 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/08 16:22:29 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/08 19:56:30 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
+
+# define SATISFIED 1
+# define UNSATISFIED 0
+# define AUX_MUTEX 4
+# define STR_EAT "\033[0;34mEating 🍝\033[0m"
+# define EATING 3
+# define STR_SLEEP "\033[0;31mSleeping 😴\033[0m"
+# define SLEEPING 2
+# define STR_THINK "\033[0;33mThinking 🤔\033[0m"
+# define THINKING 1
+# define STR_FORK "Take both forks 🍴\033[0m"
+# define STR_FORK2 "Relase both forks 🍴\033[0m"
+# define STR_DIE "Dying 💀\033[0m" 
 
 //# <biblioteca.h>
 # include <unistd.h>
@@ -19,9 +32,9 @@
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "ph_macros.h"
-# include "../library/printf/ft_printf.h"
-# include "../library/libft/libft.h"
+# include <pthread.h>
+//# include "../library/printf/ft_printf.h"
+//# include "../library/libft/libft.h"
 
 //structura
 typedef struct s_pipex
