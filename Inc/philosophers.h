@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/09 21:52:12 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/16 16:21:36 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -33,13 +33,23 @@
 /*                                 STRUCTS                                   */
 /* ************************************************************************** */
 
-typedef 
-typedef struct s_info
+typedef pthread_mutex_t	t_fork;
+
+
+
+typedef struct s_philo
 {
 	int	id;
 	int	state;
 	int	foods;
-}				t_info;
+}				t_philo;
+
+typedef struct	s_table
+{
+	t_fork	*f;
+	t_philo	*p;
+	t_info	info;
+}				t_table;
 
 /* ************************************************************************** */
 /*                            BIBLIOTECAS.H                                   */
