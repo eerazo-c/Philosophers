@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/22 18:57:54 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/22 21:57:45 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -18,11 +18,14 @@
 
 # include <unistd.h>
 # include <fcntl.h>
+#include <sys/time.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+#include <limits.h>
+#include <time.h>
 
 /* ************************************************************************** */
 /*                                 MACROS                                    */
@@ -84,10 +87,19 @@ typedef struct	s_table
 /*                     PROTOTYPE OF FUNTION                                   */
 /* ************************************************************************** */
 
+//time
+time_t get_mstime(void);
+
+//playful
+void	*mutex_fork(void *arg);
+void	set_state(t_philo *p, char *state);
+
+//init
 void	ft_usleep(int ms);
 int	everyone_eat(t_philo *p);
 int	remember_die(t_philo *p);
-int	init_philo(t_table *table);;
+int	init_philo(t_table *table);
 int	init_mutex(t_table *table);
+
 int	delete_all(t_table *table, int j);
 #endif

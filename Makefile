@@ -6,7 +6,7 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 16:47:26 by elerazo-          #+#    #+#              #
-#    Updated: 2025/09/22 18:55:46 by elerazo          ###   ########.fr        #
+#    Updated: 2025/09/22 21:21:44 by elerazo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	philosophers
@@ -14,7 +14,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
 OBJDIR		=	build
 SRCSDIR		=	src
-SRCS		=	philo.c parser.c init.c aux.c \
+SRCS		=	philo.c parser.c init.c aux.c playful.c \
 
 #LIBFT_PATH	=	library/libft
 #PRINTF_PATH =	library/printf

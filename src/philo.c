@@ -6,25 +6,26 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:32:12 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/22 19:07:30 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:27:20 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers.h"
 
-static int	special_case(t_table *tab)
+static int	special_case(t_table *t)
 {
-	if (tab->info.max_eat == 0)
+	if (t->info.max_eat == 0)
 	{
 		printf("Every Philo is Satisfied 😋\n");
 		return (-1);
 	}
-	else if (tab->info.n_philo == 1)
+	else if (t->info.n_philo == 1)
 	{
 		printf("0 The philosopher [0] is %s\n", STR_THINK);
-		ft_usleep(tab->info.time2_die);
+		ft_usleep(t->info.time2_die);
 		printf("%li The philosopher [0] is %s\n", t->info.time2_die, STR_DIE);
 		return (-1);
 	}
+	return (0);
 }
 
 int	delete_all(t_table *table, int j)
@@ -46,6 +47,7 @@ int	delete_all(t_table *table, int j)
 
 int main(int ac, char **av)
 {
+	(void)av;
 	t_table	table;
 
 	if (ac == 6 || ac == 5)
@@ -53,11 +55,11 @@ int main(int ac, char **av)
 		/*if (parser(ac, av, &table) < 0)
 			printf("philo: invalid digit\n");
 		else*/
-			if (special_case(&table) < 0)
+		if (special_case(&table) < 0)
 				return (-1);
-			if (init_mutex(&table) < 0)
+		if (init_mutex(&table) < 0)
 				return (-1);
-			if (init_philo(&table) < 0)
+		if (init_philo(&table) < 0)
 				return (-1);
 		/*	if (start_philo(&table) < 0)
 				return (-1);*/

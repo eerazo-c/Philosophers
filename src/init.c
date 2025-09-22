@@ -1,6 +1,6 @@
 //header
 
-#include "philosopher.h"
+#include "philosophers.h"
 
 int	init_thread(t_table *table)
 {
@@ -11,10 +11,10 @@ int	init_thread(t_table *table)
 	philos = (int)table->info.n_philo;
 	p = table->p;
 	i = -1;
-	get_mstime();
+	//get_mstime();
 	while (++i < philos)
 	{
-		if (pthread_create(&(p[i].thread_id), NULL, the_last_supper,
+		if (pthread_create(&(p[i].thread_id), NULL, mutex_fork,
 				&p[i]) != 0)
 			return(delete_all(table, philos + AUX_MUTEX)); 
 	}
@@ -55,12 +55,12 @@ int	remember_die(t_philo *p)
 	{
 		if (everyone_eat(p) < 0)
 			break;
-		pthread_mutex_lock(o->info.time);
-		if (p[i].last_noodle + p[i].info.time2_die < get_mstime())
+		pthread_mutex_lock(p->info.time);
+		if (p[i].last_noodle + p[i].info.time2_die < 1)
 		{
-			pthread_mutex_unlock(p_info.time);
-			set_state(&p[i], STR_DIE);
-			pthread_mutex_lock(p_info.starvation);
+			pthread_mutex_unlock(p->info.time);
+			//set_state(&p[i], STR_DIE);
+			pthread_mutex_lock(p->info.starvation);
 			*p[i].info.end = 1;
 			pthread_mutex_unlock(p->info.starvation);
 			break;
@@ -87,9 +87,9 @@ int	init_philo(t_table *table)
 	{
 		table->p[i].id = i;
 		if (i != 0)
-			table->p[i].left_fork = table->p[i - 1].right_fotk;
+			table->p[i].left_fork = table->p[i - 1].right_fork;
 		table->p[i].right_fork = table->f + 1;
-		table->p[i].foods = 0:
+		table->p[i].foods = 0;
 		table->p[i].state = UNSATISFIED;
 		table->p[i].info = table->info;
 		table->p[i].info.starvation = table->f + philos;
@@ -106,8 +106,8 @@ int	init_mutex(t_table *table)
 	int	philos;
 	int	i;
 
-	philo = table->info.n_philo;
-	tabale->f = malloc(sizeof(*t_fork) * (philo + AUX_MUTEX));
+	philos = table->info.n_philo;
+	table->f = malloc(sizeof(t_fork) * (philos + AUX_MUTEX));
 	if (!table->f)
 		return (delete_all(table, -1));
 	i = 0;
