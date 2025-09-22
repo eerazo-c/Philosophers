@@ -6,11 +6,23 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/16 16:21:36 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/22 18:57:54 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
+
+/* ************************************************************************** */
+/*                            BIBLIOTECAS.H                                   */
+/* ************************************************************************** */
+
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <pthread.h>
 
 /* ************************************************************************** */
 /*                                 MACROS                                    */
@@ -27,7 +39,7 @@
 # define THINKING 1
 # define STR_FORK "Take both forks 🍴\033[0m"
 # define STR_FORK2 "Relase both forks 🍴\033[0m"
-# define STR_DIE "Dying 💀\033[0m" 
+# define STR_DIE "Dying 💀\033[0m"
 
 /* ************************************************************************** */
 /*                                 STRUCTS                                   */
@@ -35,13 +47,30 @@
 
 typedef pthread_mutex_t	t_fork;
 
-
+typedef struct	s_info
+{
+	long	n_philo;
+	long	time2_die;
+	long	time2_eat;
+	long	time2_sleep;
+	long	max_eat;
+	long	*end;
+	t_fork	*starvation;
+	t_fork	*printor;
+	t_fork	*time;
+	t_fork	*pleased;
+}				t_info;
 
 typedef struct s_philo
 {
-	int	id;
-	int	state;
-	int	foods;
+	int			id;
+	int			state;
+	int			foods;
+	long		last_noodle;
+	pthread_t	thread_id;
+	t_fork		*left_fork;
+	t_fork		*right_fork;
+	t_info		info;
 }				t_philo;
 
 typedef struct	s_table
@@ -52,19 +81,13 @@ typedef struct	s_table
 }				t_table;
 
 /* ************************************************************************** */
-/*                            BIBLIOTECAS.H                                   */
-/* ************************************************************************** */
-
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
-
-/* ************************************************************************** */
 /*                     PROTOTYPE OF FUNTION                                   */
 /* ************************************************************************** */
 
+void	ft_usleep(int ms);
+int	everyone_eat(t_philo *p);
+int	remember_die(t_philo *p);
+int	init_philo(t_table *table);;
+int	init_mutex(t_table *table);
+int	delete_all(t_table *table, int j);
 #endif
