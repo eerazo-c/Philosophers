@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/22 21:57:45 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/23 00:07:33 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -87,6 +87,8 @@ typedef struct	s_table
 /*                     PROTOTYPE OF FUNTION                                   */
 /* ************************************************************************** */
 
+//parser
+int	parser(int ac, char **av, t_table *table);
 //time
 time_t get_mstime(void);
 
@@ -100,6 +102,7 @@ int	everyone_eat(t_philo *p);
 int	remember_die(t_philo *p);
 int	init_philo(t_table *table);
 int	init_mutex(t_table *table);
+int	init_thread(t_table *table);
 
 int	delete_all(t_table *table, int j);
 #endif

@@ -2,7 +2,6 @@
 
 #include "philosophers.h"
 
-
 long	get_time_value(void)
 {
 	struct timeval	timestamp;
@@ -26,7 +25,7 @@ void	set_state(t_philo *p, char *state)
 {
 	pthread_mutex_lock(p->info.starvation);
 	pthread_mutex_lock(p->info.time);
-	pthread_mutex_lock(p->info.starvation);
+	pthread_mutex_lock(p->info.printor);
 	if (*p->info.end != 1)
 		 printf("%li The philosopher 🗿 [%d] is %s\n", get_mstime(), p->id,
 			state);

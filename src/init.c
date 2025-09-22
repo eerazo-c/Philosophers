@@ -11,7 +11,7 @@ int	init_thread(t_table *table)
 	philos = (int)table->info.n_philo;
 	p = table->p;
 	i = -1;
-	//get_mstime();
+	get_mstime();
 	while (++i < philos)
 	{
 		if (pthread_create(&(p[i].thread_id), NULL, mutex_fork,
@@ -23,7 +23,7 @@ int	init_thread(t_table *table)
 	while (++i < philos)
 	{
 		if (pthread_join(p[i].thread_id, NULL) != 0)
-			return (delete_all(table, philos +AUX_MUTEX));
+			return (delete_all(table, philos + AUX_MUTEX));
 	}
 	return (0);
 }
@@ -56,14 +56,14 @@ int	remember_die(t_philo *p)
 		if (everyone_eat(p) < 0)
 			break;
 		pthread_mutex_lock(p->info.time);
-		if (p[i].last_noodle + p[i].info.time2_die < 1)
+		if (p[i].last_noodle + p[i].info.time2_die < get_mstime())
 		{
 			pthread_mutex_unlock(p->info.time);
-			//set_state(&p[i], STR_DIE);
+			set_state(&p[i], STR_DIE);
 			pthread_mutex_lock(p->info.starvation);
 			*p[i].info.end = 1;
 			pthread_mutex_unlock(p->info.starvation);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(p->info.time);
 		i++;
@@ -88,7 +88,7 @@ int	init_philo(t_table *table)
 		table->p[i].id = i;
 		if (i != 0)
 			table->p[i].left_fork = table->p[i - 1].right_fork;
-		table->p[i].right_fork = table->f + 1;
+		table->p[i].right_fork = table->f + i;
 		table->p[i].foods = 0;
 		table->p[i].state = UNSATISFIED;
 		table->p[i].info = table->info;

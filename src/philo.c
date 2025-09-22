@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:32:12 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/22 19:27:20 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/23 00:08:55 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers.h"
@@ -47,22 +47,23 @@ int	delete_all(t_table *table, int j)
 
 int main(int ac, char **av)
 {
-	(void)av;
 	t_table	table;
 
 	if (ac == 6 || ac == 5)
 	{
-		/*if (parser(ac, av, &table) < 0)
+		if (parser(ac, av, &table) < 0)
 			printf("philo: invalid digit\n");
-		else*/
-		if (special_case(&table) < 0)
+		else
+		{
+			if (special_case(&table) < 0)
+					return (-1);
+			if (init_mutex(&table) < 0)
+					return (-1);
+			if (init_philo(&table) < 0)
+					return (-1);
+			if (init_thread(&table) < 0)
 				return (-1);
-		if (init_mutex(&table) < 0)
-				return (-1);
-		if (init_philo(&table) < 0)
-				return (-1);
-		/*	if (start_philo(&table) < 0)
-				return (-1);*/
+		}
 	}
 	else
 		printf("philo: incorrect number of arguments\n");

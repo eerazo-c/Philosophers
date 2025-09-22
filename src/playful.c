@@ -1,6 +1,38 @@
 //header
 #include "philosophers.h"
 
+static	int eating(t_philo *p)
+{
+	p->foods++;
+	pthread_mutex_lock(p->info.time);
+	p->last_noodle = get_mstime();
+	pthread_mutex_unlock(p->info.time);
+	set_state(p, STR_EAT);
+	ft_usleep(p->info.time2_eat);
+	pthread_mutex_unlock(p->left_fork);
+	pthread_mutex_unlock(p->right_fork);
+	set_state(p, STR_FORK2);
+	pthread_mutex_lock(p->info.pleased);
+	if (p->info.max_eat != -1 && p->foods >= p->info.max_eat)
+	{
+		p->state = SATISFIED;
+		pthread_mutex_unlock(p->info.pleased);
+		return (-1);
+	}
+	pthread_mutex_unlock(p->info.pleased);
+	return (0);
+}
+
+static	int sleeping(t_philo *p)
+{
+	if (eating(p) < 0)
+		return (-1);
+	set_state(p, STR_SLEEP);
+	ft_usleep(p->info.time2_sleep);
+	return (0);
+	
+}
+
 static	void take_forks(t_philo *p, int i)
 {
 	if (i == 2)
@@ -38,9 +70,8 @@ void	*mutex_fork(void *arg)
 			take_forks(p, 2);
 		else
 			take_forks(p, 1);
-		printf("HOLA, HASTA AQUI BIEN BEBE");
-		//if (sleping(p))
-			break;
+		if (sleeping(p))
+			break ;
 	}
 	return (NULL);
 }
