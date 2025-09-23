@@ -27,8 +27,8 @@ void	set_state(t_philo *p, char *state)
 	pthread_mutex_lock(p->info.time);
 	pthread_mutex_lock(p->info.printor);
 	if (*p->info.end != 1)
-		 printf("%li The philosopher 🗿 [%d] is %s\n", get_mstime(), p->id,
-			state);
+		printf("%li The philosopher 🗿 [%d] is %s\n", get_mstime(),
+			p->id, state);
 	pthread_mutex_unlock(p->info.printor);
 	pthread_mutex_unlock(p->info.time);
 	pthread_mutex_unlock(p->info.starvation);
@@ -41,4 +41,26 @@ void	ft_usleep(int ms)
 	time = get_time_value();
 	while (get_time_value() - time < ms)
 		usleep(100);
+}
+
+long	ft_atol(const char *str)
+{
+	int		i;
+	int		sign;
+	long	result;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		result = result * 10 + str[i++] - '0';
+	return (result * sign);
 }

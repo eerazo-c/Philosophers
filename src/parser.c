@@ -1,17 +1,17 @@
 //header
 
 #include "philosophers.h"
- 
+
 static void	fill_info(int ac, char **av, t_info *info)
 {
-	info->n_philo = atol(av[1]); //aqui modificar al atol
-	info->time2_die = atol(av[2]);
-	info->time2_eat = atol(av[3]);
-	info->time2_sleep = atol(av[4]);
+	info->n_philo = ft_atol(av[1]);
+	info->time2_die = ft_atol(av[2]);
+	info->time2_eat = ft_atol(av[3]);
+	info->time2_sleep = ft_atol(av[4]);
 	if (ac == 6)
-		info->max_eat = atol(av[5]);
+		info->max_eat = ft_atol(av[5]);
 	else
-		info->max_eat = -1; //revisar aqui
+		info->max_eat = -1;
 	info->end = malloc(sizeof(int) * 1);
 	if (!info->end)
 		return ;
@@ -39,7 +39,7 @@ int	is_num(char **num)
 	return (0);
 }
 
-static	int is_max(t_info *data)
+static	int	is_max(t_info *data)
 {
 	if (!(data->n_philo <= INT_MAX && data->n_philo >= INT_MIN))
 		return (-1);
@@ -62,7 +62,7 @@ int	parser(int ac, char **av, t_table *table)
 	if (is_num(av) < 0)
 		return (-1);
 	fill_info(ac, av, &info);
-	if (is_max(&info) < 0) 
+	if (is_max(&info) < 0)
 		return (-1);
 	table->info = info;
 	if (table->info.n_philo <= 0)

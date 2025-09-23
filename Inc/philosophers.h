@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/23 00:07:33 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/23 20:19:10 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -18,14 +18,14 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-#include <sys/time.h>
+# include <sys/time.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
-#include <limits.h>
-#include <time.h>
+# include <limits.h>
+# include <time.h>
 
 /* ************************************************************************** */
 /*                                 MACROS                                    */
@@ -50,7 +50,7 @@
 
 typedef pthread_mutex_t	t_fork;
 
-typedef struct	s_info
+typedef	struct	s_info
 {
 	long	n_philo;
 	long	time2_die;
@@ -104,5 +104,6 @@ int	init_philo(t_table *table);
 int	init_mutex(t_table *table);
 int	init_thread(t_table *table);
 
+long	ft_atol(const char *str);
 int	delete_all(t_table *table, int j);
 #endif

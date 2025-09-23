@@ -1,7 +1,7 @@
 //header
 #include "philosophers.h"
 
-static	int eating(t_philo *p)
+static	int	eating(t_philo *p)
 {
 	p->foods++;
 	pthread_mutex_lock(p->info.time);
@@ -23,17 +23,16 @@ static	int eating(t_philo *p)
 	return (0);
 }
 
-static	int sleeping(t_philo *p)
+static	int	sleeping(t_philo *p)
 {
 	if (eating(p) < 0)
 		return (-1);
 	set_state(p, STR_SLEEP);
 	ft_usleep(p->info.time2_sleep);
 	return (0);
-	
 }
 
-static	void take_forks(t_philo *p, int i)
+static	void	take_forks(t_philo *p, int i)
 {
 	if (i == 2)
 	{
@@ -42,7 +41,7 @@ static	void take_forks(t_philo *p, int i)
 		set_state(p, STR_FORK);
 	}
 	else
-	{	
+	{
 		pthread_mutex_lock(p->right_fork);
 		pthread_mutex_lock(p->left_fork);
 		set_state(p, STR_FORK);
@@ -51,7 +50,7 @@ static	void take_forks(t_philo *p, int i)
 
 void	*mutex_fork(void *arg)
 {
-	t_philo *p;
+	t_philo	*p;
 
 	p = (t_philo *)arg;
 	if (p->id % 2 != 0)

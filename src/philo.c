@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 17:32:12 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/23 18:38:16 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/23 19:40:25 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers.h"
@@ -45,7 +45,7 @@ int	delete_all(t_table *table, int j)
 	return (-1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_table	table;
 
@@ -56,11 +56,11 @@ int main(int ac, char **av)
 		else
 		{
 			if (special_case(&table) < 0)
-					return (-1);
+				return (-1);
 			if (init_mutex(&table) < 0)
-					return (-1);
+				return (-1);
 			if (init_philo(&table) < 0)
-					return (-1);
+				return (-1);
 			if (init_thread(&table) < 0)
 				return (-1);
 		}
