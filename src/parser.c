@@ -13,6 +13,8 @@ static void	fill_info(int ac, char **av, t_info *info)
 	else
 		info->max_eat = -1; //revisar aqui
 	info->end = malloc(sizeof(int) * 1);
+	if (!info->end)
+		return ;
 	info->end[0] = 0;
 }
 
@@ -60,7 +62,7 @@ int	parser(int ac, char **av, t_table *table)
 	if (is_num(av) < 0)
 		return (-1);
 	fill_info(ac, av, &info);
-	if (is_max(&info) < 0); 
+	if (is_max(&info) < 0) 
 		return (-1);
 	table->info = info;
 	if (table->info.n_philo <= 0)
