@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 17:23:05 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/23 20:19:10 by elerazo          ###   ########.fr       */
+/*   Created: 2025/09/24 16:29:01 by elerazo-          #+#    #+#             */
+/*   Updated: 2025/09/24 16:32:44 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -28,7 +28,7 @@
 # include <time.h>
 
 /* ************************************************************************** */
-/*                                 MACROS                                    */
+/*                                 MACROS                                     */
 /* ************************************************************************** */
 
 # define SATISFIED 1
@@ -45,12 +45,12 @@
 # define STR_DIE "Dying 💀\033[0m"
 
 /* ************************************************************************** */
-/*                                 STRUCTS                                   */
+/*                                 STRUCTS                                    */
 /* ************************************************************************** */
 
 typedef pthread_mutex_t	t_fork;
 
-typedef	struct	s_info
+typedef struct s_info
 {
 	long	n_philo;
 	long	time2_die;
@@ -76,7 +76,7 @@ typedef struct s_philo
 	t_info		info;
 }				t_philo;
 
-typedef struct	s_table
+typedef struct s_table
 {
 	t_fork	*f;
 	t_philo	*p;
@@ -84,26 +84,31 @@ typedef struct	s_table
 }				t_table;
 
 /* ************************************************************************** */
-/*                     PROTOTYPE OF FUNTION                                   */
+/*                                 PROTOTYPES                                 */
 /* ************************************************************************** */
 
-//parser
-int	parser(int ac, char **av, t_table *table);
-//time
-time_t get_mstime(void);
+//main
+// main
+int		delete_all(t_table *table, int j);
 
-//playful
+// init
+int		init_philo(t_table *table);
+int		init_mutex(t_table *table);
+int		init_thread(t_table *table);
+
+// parser
+int		parser(int ac, char **av, t_table *table);
+
+// playful
 void	*mutex_fork(void *arg);
+int		remember_die(t_philo *p);
+
+// utils
 void	set_state(t_philo *p, char *state);
-
-//init
+time_t	get_mstime(void);
+long	get_time_value(void);
+int		everyone_eat(t_philo *p);
 void	ft_usleep(int ms);
-int	everyone_eat(t_philo *p);
-int	remember_die(t_philo *p);
-int	init_philo(t_table *table);
-int	init_mutex(t_table *table);
-int	init_thread(t_table *table);
-
 long	ft_atol(const char *str);
-int	delete_all(t_table *table, int j);
+
 #endif

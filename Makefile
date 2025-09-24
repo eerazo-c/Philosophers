@@ -9,12 +9,12 @@
 #    Updated: 2025/09/23 19:55:44 by elerazo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME		=	philosophers
+NAME		=	philo
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
 OBJDIR		=	build
 SRCSDIR		=	src
-SRCS		=	philo.c parser.c init.c initd.c utils.c playful.c \
+SRCS		=	philo.c parser.c init.c initd.c utils.c playful.c
 
 #LIBFT_PATH	=	library/libft
 #PRINTF_PATH =	library/printf
@@ -29,7 +29,7 @@ GREEN		=	\033[0;32m
 RED			=	\033[0;31m
 RESET		=	\033[m
 
-all: banner $(NAME)
+all: banner $(NAME) 
 
 banner:
 	@printf "%b" "$(PURPLE)\n"                                                           
@@ -46,14 +46,14 @@ banner:
 	@printf "%b" "\n$(RESET)"
 
 
-$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Inc/philosophers.h | $(OBJDIR)
+$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Makefile Inc/philosophers.h | $(OBJDIR) 
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@-mkdir $(OBJDIR) > /dev/null 2>&1
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) 
 	@printf "%-42b" "$(BLUE)linking... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) $^ -o $@
 
