@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:53:09 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/24 22:38:35 by elerazo          ###   ########.fr       */
+/*   Updated: 2025/09/25 17:55:37 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers.h"
@@ -37,7 +37,7 @@ int	init_thread(t_table *table)
 	return (0);
 }
 
-int	everyone_eat(t_philo *p)
+static int	everyone_eat(t_philo *p)
 {
 	int	i;
 

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 NAME		=	philo
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
+CFLAGS		=	-Wall -Wextra -Werror -I Inc/  -fsanitize=thread
 OBJDIR		=	build
 SRCSDIR		=	src
 SRCS		=	philo.c parser.c init.c utils.c playful.c
@@ -46,7 +46,7 @@ banner:
 	@printf "%b" "\n$(RESET)"
 
 
-$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Makefile Inc/philosophers.h | $(OBJDIR) 
+$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Inc/philosophers.h | $(OBJDIR) 
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 

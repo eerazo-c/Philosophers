@@ -22,12 +22,10 @@ static void	fill_info(int ac, char **av, t_info *info)
 	else
 		info->max_eat = -1;
 	info->end = malloc(sizeof(int) * 1);
-	if (!info->end)
-		return ;
 	info->end[0] = 0;
 }
 
-int	is_num(char **num)
+static int	is_num(char **num)
 {
 	int	i;
 	int	j;
@@ -38,7 +36,7 @@ int	is_num(char **num)
 		j = 0;
 		while (num[i][j])
 		{
-			if (num[i][j] >= 48 && num[i][j] <= 57)
+			if (num[i][j] > 47 && num[i][j] < 58)
 				j++;
 			else
 				return (-1);

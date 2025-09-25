@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 16:29:01 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/09/24 16:32:44 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:54:44 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILOSOPHERS_H
@@ -26,6 +26,7 @@
 # include <pthread.h>
 # include <limits.h>
 # include <time.h>
+# include <string.h>
 
 /* ************************************************************************** */
 /*                                 MACROS                                     */
@@ -57,7 +58,7 @@ typedef struct s_info
 	long	time2_eat;
 	long	time2_sleep;
 	long	max_eat;
-	long	*end;
+	int		*end;
 	t_fork	*starvation;
 	t_fork	*printor;
 	t_fork	*time;
@@ -107,7 +108,7 @@ int		remember_die(t_philo *p);
 void	set_state(t_philo *p, char *state);
 time_t	get_mstime(void);
 long	get_time_value(void);
-int		everyone_eat(t_philo *p);
+//int		everyone_eat(t_philo *p);
 void	ft_usleep(int ms);
 long	ft_atol(const char *str);
 
